@@ -45,7 +45,7 @@ func main() {
 		log.Fatalln("Could not decode remote image file", err)
 	}
 	profileImage = imaging.Resize(profileImage, 600, 0, imaging.Lanczos)
-	profileImage = imaging.Rotate(profileImage, 40.0, color.Transparent)
+	profileImage = imaging.Rotate(profileImage, 42.0, color.Transparent)
 
 	// how to resize: dstImage2 := imaging.Resize(src2, 256, 256, imaging.Lanczos)
 	upLeft := image.Point{0, 0}
@@ -53,11 +53,7 @@ func main() {
 	dst := image.NewRGBA(image.Rectangle{upLeft, lowRight})
 
 	// draw profile
-	// bnds := image.Rectangle{
-	// 	image.Point{20, 20},
-	// 	image.Point{300, 300},
-	// }
-	draw.Draw(dst, profileImage.Bounds(), profileImage, image.ZP, draw.Src)
+	draw.Draw(dst, profileImage.Bounds(), profileImage, image.Point{20, 260}, draw.Src)
 
 	// draw template over it
 	draw.Draw(dst, templateImage.Bounds(), templateImage, image.ZP, draw.Over)
